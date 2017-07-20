@@ -3,17 +3,17 @@ package com.xt;/**
  */
 
 /**
- * 07-20 15:32
+ * 07-20 16:23
  *
  * @author xt
  **/
-public class Greeting {
+public class Message {
     private String content;
 
-    public Greeting() {
+    public Message() {
     }
 
-    public Greeting(String content) {
+    public Message(String content) {
         this.content = content;
     }
 
