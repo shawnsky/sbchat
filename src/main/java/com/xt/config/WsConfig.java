@@ -1,4 +1,4 @@
-package com.xt;/**
+package com.xt.config;/**
  * Created by Administrator on 2017/7/20.
  */
 

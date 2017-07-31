@@ -1,7 +1,8 @@
-package com.xt;/**
+package com.xt.controller;/**
  * Created by Administrator on 2017/7/20.
  */
 
+import com.xt.entity.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,6 @@ public class AppController {
     public Message greeting(Message message) throws Exception{
         System.out.println(message.getContent());
         return message;
-    }
-
-    @ResponseBody
-    @RequestMapping("/help")
-    public String help(){
-        return "asdasdasd";
     }
 }
 

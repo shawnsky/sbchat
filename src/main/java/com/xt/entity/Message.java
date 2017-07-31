@@ -1,4 +1,4 @@
-package com.xt;/**
+package com.xt.entity;/**
  * Created by Administrator on 2017/7/20.
  */
 
