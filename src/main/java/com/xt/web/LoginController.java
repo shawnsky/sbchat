@@ -1,7 +1,6 @@
-package com.xt.controller;
+package com.xt.web;
 
 import com.xt.entity.Body;
-import com.xt.entity.User;
 import com.xt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,46 +25,36 @@ public class LoginController {
     }
 
     /**
-     * Login submit string.
+     * Login submit.
      * 0 成功
-     * 1 用户名不存在
+     * 1 用户不存在
      * 2 密码错误
      * 3
      */
 
     @ResponseBody
     @RequestMapping(value = "loginSubmit", method = RequestMethod.POST)
-    public Body loginSubmit(String username, String password, HttpSession session){
+    public Body loginSubmit(String id, String password, HttpSession session){
         Body body = new Body();
-        String status = userService.login(username, password);
+        String status = userService.login(Long.parseLong(id), password);
         body.setStatus(status);
 
         if (status.equals("0")){
-            session.setAttribute("username", username);
+            session.setAttribute("userId", id);
             body.setMsg("登陆成功");
 
         } else if (status.equals("1")){
-            body.setMsg("用户名不存在");
+            body.setMsg("用户不存在");
         } else {
             body.setMsg("密码错误");
         }
         return body;
     }
 
-//    @ResponseBody
-//    @RequestMapping("reg")
-//    public String reg(){
-//        User user = new User();
-//        user.setUsername("shawn");
-//        user.setPassword("123");
-//        userService.create(user);
-//        return "ok";
-//    }
 
-    @ResponseBody
     @RequestMapping("logout")
     public String logout(HttpSession session){
-        session.removeAttribute("username");
-        return "already logout";
+        session.removeAttribute("userId");
+        return "redirect:/";
     }
 }

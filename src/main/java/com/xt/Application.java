@@ -3,6 +3,9 @@ package com.xt; /**
  */
 
 
+import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
@@ -17,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 
 @SpringBootApplication
+@MapperScan("com.xt.mapper")
 public class Application implements EmbeddedServletContainerCustomizer {
 
     public static void main(String[] args) {
-
         SpringApplication.run(Application.class, args);
 
     }

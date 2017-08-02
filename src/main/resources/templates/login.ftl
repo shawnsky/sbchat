@@ -18,7 +18,7 @@
                     cache: "false",
                     success: function (data) {
                         if (data.status=="0"){
-                            window.location.href = "/index.html";
+                            window.location.href = "/index0.html";
                         } else {
                             $('#error').text(data.msg);
                         }
@@ -33,7 +33,7 @@
 <body>
 
 <form id="loginForm" action="/loginSubmit" method="post">
-    <label>name</label><input type="text" name="username" placeholder="input your name here">
+    <label>id</label><input type="number" name="id" placeholder="input your id here">
     <br><label>password</label><input type="password" name="password" placeholder="your password">
     <input id="btn" type="button" value="ok">
 </form>

@@ -1,11 +1,14 @@
 package com.xt.service.impl;
 
 import com.xt.entity.User;
+import com.xt.mapper.UserMapper;
 import com.xt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by admin on 2017/7/31.
@@ -14,29 +17,39 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private UserMapper userMapper;
 
     @Override
-    public String login(String username, String password) {
-        String pwd = redisTemplate.opsForValue().get("user:"+username);
-        if (pwd==null){
+    public String login(Long id, String password) {
+        User record = userMapper.findById(id);
+        if (record==null){
             return "1";//user not exists
         }
-        if (!pwd.equals(password)){
+        if (!record.getPassword().equals(password)){
             return "2";//password wrong
         }
         return "0";//success
     }
 
+    @Override
+    public User findById(Long id) {
+        return userMapper.findById(id);
+    }
+
+    @Override
+    public List<User> findByNickname(String nickname) {
+        return userMapper.findByNickname(nickname);
+    }
+
 
     @Override
     public void create(User user) {
-        redisTemplate.opsForValue().set("user:"+user.getUsername(), user.getPassword());
+        userMapper.insert(user);
 
     }
 
     @Override
-    public void delete(String username) {
-        redisTemplate.delete("user:"+username);
+    public void delete(Long id) {
+        userMapper.delete(id);
     }
 }
