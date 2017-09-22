@@ -1,6 +1,7 @@
 package com.xt.service;
 
 import com.xt.entity.User;
+import com.xt.entity.UserUser;
 
 import java.util.List;
 
@@ -16,5 +17,9 @@ public interface UserService {
 
     void create(User user);
 
-    void delete(Long id);
+    void addFriend(Long aId, Long bId);
+
+    List<User> findAllFriends(Long id);
+
+
 }

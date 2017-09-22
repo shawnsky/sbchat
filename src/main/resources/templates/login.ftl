@@ -2,8 +2,9 @@
 <head>
     <title>login</title>
 
-
-    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/bootstrap.min.js"></script>
 
 
     <script type="text/javascript">
@@ -18,7 +19,7 @@
                     cache: "false",
                     success: function (data) {
                         if (data.status=="0"){
-                            window.location.href = "/index0.html";
+                            window.location.href = "/";
                         } else {
                             $('#error').text(data.msg);
                         }

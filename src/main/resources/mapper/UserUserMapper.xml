@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xt.mapper.UserUserMapper" >
 
+
     <sql id="User_Column_List" >
         id, nickname, password, avatar, create_time
     </sql>
@@ -21,7 +22,7 @@
 
 
     <delete id="remove" parameterType="UserUser">
-        DELETE FROM users
+        DELETE FROM user
         WHERE
         a_id=#{aId,jdbcType=BIGINT} AND b_id=#{bId, jdbcType=BIGINT}
     </delete>
@@ -31,8 +32,8 @@
     <select id="findAllFriends" parameterType="Long" resultType="User" >
        SELECT
        u.id, u.nickname, u.password, u.avatar, u.create_time
-	   FROM users u, user_user uu
-	   WHERE uu.a_id=#{value,jdbcType=BIGINT} AND uu.b_id = u.id
+	   FROM user u, user_user uu
+	   WHERE (uu.a_id=#{value,jdbcType=BIGINT} AND uu.b_id = u.id) OR (uu.b_id=#{value,jdbcType=BIGINT} AND uu.a_id = u.id)
     </select>
 
 

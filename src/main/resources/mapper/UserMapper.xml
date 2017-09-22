@@ -11,7 +11,7 @@
             SELECT LAST_INSERT_ID()
             </selectKey>
 
-            INSERT INTO users
+            INSERT INTO user
             (nickname,password)
             VALUES
             (#{nickname,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})
@@ -21,7 +21,7 @@
 
 
     <delete id="delete" parameterType="Long">
-        DELETE FROM users
+        DELETE FROM user
         WHERE
         id=#{id,jdbcType=BIGINT}
     </delete>
@@ -31,7 +31,7 @@
     <select id="findById" parameterType="Long" resultType="User" >
        SELECT
        <include refid="Base_Column_List" />
-	   FROM users
+	   FROM user
 	   WHERE id = #{id,jdbcType=BIGINT}
     </select>
 
@@ -39,7 +39,7 @@
     <select id="findByNickname" parameterType="String" resultType="User" >
         SELECT
         <include refid="Base_Column_List" />
-        FROM users
+        FROM user
         WHERE username = #{username,jdbcType=VARCHAR}
     </select>
 
